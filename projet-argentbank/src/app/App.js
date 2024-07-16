@@ -3,6 +3,8 @@ import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import Index from '../pages/indexpage';
 import Header from '../components/header';
 import Headerstyle from '../styles/headerstyle';
+import Footer from '../components/footer';
+import Footerstyle from '../styles/footerstyle';
 
 /**
  * Create routes for differents components of the site
@@ -10,18 +12,17 @@ import Headerstyle from '../styles/headerstyle';
  * @class
  * @this {App}
  * @param {id} id of the user
- * @param {props} props render the page with the user's data
  */
 
 export default class App extends React.Component{
     render(){
-
         return(
             <BrowserRouter>
                 <Header/><Headerstyle/>
-            <Routes>
-                <Route exact path="/" component={Index}/>
-            </Routes>
+                <Routes>
+                    <Route exact path="/" element={<Index/>}/>
+                </Routes>
+                <Footer/><Footerstyle/>
             </BrowserRouter>
         )
     }
