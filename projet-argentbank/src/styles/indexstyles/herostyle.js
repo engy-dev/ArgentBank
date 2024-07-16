@@ -44,10 +44,6 @@ const Herostyle = createGlobalStyle`
     background-position: 0% 33%;
   }
 
-${'' /*   .background-index{
-    padding-top: 0;
-}  */}
-
   .hero-content {
     position: absolute;
     top: 50px;
@@ -63,13 +59,6 @@ ${'' /*   .background-index{
   .hero-content .text {
     font-size: 1.2rem;
   }
-}
-
-@media (min-width: 720px) {
-
-${'' /*   .background-index{
-    padding-top: 0;
-}  */}
 }
 `
 

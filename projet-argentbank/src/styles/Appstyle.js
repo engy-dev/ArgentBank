@@ -20,10 +20,6 @@ body {
   flex: 1;
 }
 
-.bg-dark {
-  background-color: #12002b;
-}
-
 .sr-only {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */

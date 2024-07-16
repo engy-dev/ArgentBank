@@ -5,6 +5,7 @@ import Header from '../components/header';
 import Headerstyle from '../styles/headerstyle';
 import Footer from '../components/footer';
 import Footerstyle from '../styles/footerstyle';
+import Signinpage from '../pages/signinpage';
 
 /**
  * Create routes for differents components of the site
@@ -21,6 +22,7 @@ export default class App extends React.Component{
                 <Header/><Headerstyle/>
                 <Routes>
                     <Route exact path="/" element={<Index/>}/>
+                    <Route path="/signin" element={<Signinpage/>}/>
                 </Routes>
                 <Footer/><Footerstyle/>
             </BrowserRouter>
