@@ -3,7 +3,6 @@ import {createGlobalStyle} from "styled-components";
 const Signincontentstyle = createGlobalStyle`
 
 .bg-dark {
-  background-color: #12002b;
   padding-top: 0.1%;
   padding-bottom: 6.8%;
 }
