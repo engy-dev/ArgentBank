@@ -35,6 +35,10 @@ const Headeruserstyle = createGlobalStyle`
   max-width: 100%;
   width: 200px;
 }
+
+.hidden{
+  display:none;
+}
 `
 
 export default Headeruserstyle;

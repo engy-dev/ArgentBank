@@ -3,6 +3,7 @@ import Accounts from "../components/usercomponents/accounts";
 import Headeruser from "../components/usercomponents/headeruser";
 import Titleuser from "../components/usercomponents/titleuser";
 import Accountsstyle from "../styles/userstyles/accountsstyle";
+import Changenamestyle from "../styles/userstyles/changenamestyle";
 import Headeruserstyle from "../styles/userstyles/headeruserstyle";
 import Titleuserstyle from "../styles/userstyles/titleuserstyle";
 
@@ -13,9 +14,7 @@ export default class Userpage extends React.Component {
       <Fragment>
       <Headeruser/><Headeruserstyle/>
         <main className="main bg-dark">
-        <div className="name">
-          <Titleuser /><Titleuserstyle/>
-          </div>
+          <Titleuser /><Titleuserstyle/><Changenamestyle/>
           <Accounts/><Accountsstyle/>
         </main>
       </Fragment>
