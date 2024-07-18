@@ -7,6 +7,9 @@ const Changenamestyle = createGlobalStyle`
     margin-left: 30%;
     width: 40%;
     flex-wrap: wrap;
+    &>h1{
+        margin: 3.5% 0% 0.5% 0%
+    }
 }
 
 .changenameform{
@@ -27,14 +30,15 @@ const Changenamestyle = createGlobalStyle`
 label, input{
     width: 100%;
     border-radius: 5px;
+    height: 90%;
 }
 
-.savebutton{
-    margin-left: 5%;
-}
-
-.cancelbutton{
-    margin-left: 5%;
+.savebutton, .cancelbutton{
+    margin-left: 2%;
+    color: #5256ec;
+    border: solid 1px #5256ec;
+    border-radius: 3px;
+    width: 25%;
 }
 
 .headerchangename>h1{
