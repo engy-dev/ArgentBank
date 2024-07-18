@@ -8,11 +8,14 @@ import Titleuserstyle from "../styles/userstyles/titleuserstyle";
 
 export default class Userpage extends React.Component {
   render() {
+
     return (
       <Fragment>
       <Headeruser/><Headeruserstyle/>
-        <main class="main bg-dark">
+        <main className="main bg-dark">
+        <div className="name">
           <Titleuser /><Titleuserstyle/>
+          </div>
           <Accounts/><Accountsstyle/>
         </main>
       </Fragment>

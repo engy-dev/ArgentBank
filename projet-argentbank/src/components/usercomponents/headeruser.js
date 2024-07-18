@@ -6,7 +6,7 @@ export default class Headeruser extends React.Component {
   render() {
     return (
         <nav className="main-nav">
-        <a className="main-nav-logo" href="./index.html">
+        <a className="main-nav-logo" href="/">
           <img
             className="main-nav-logo-image"
             src={argentBankLogo}
