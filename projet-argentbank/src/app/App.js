@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import {Provider} from 'react-redux';
+import { store } from '../services/redux/store';
 import Index from '../pages/indexpage';
 import Footer from '../components/footer';
 import Footerstyle from '../styles/footerstyle';
@@ -18,6 +20,7 @@ import Error404 from '../components/error';
 export default class App extends React.Component{
     render(){
         return(
+            <Provider store={store}>
             <BrowserRouter>
                 <Routes>
                     <Route exact path="/" element={<Index/>}/>
@@ -27,6 +30,7 @@ export default class App extends React.Component{
                 </Routes>
                 <Footer/><Footerstyle/>
             </BrowserRouter>
+            </Provider>
         )
     }
 }

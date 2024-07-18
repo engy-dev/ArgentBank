@@ -4,7 +4,6 @@ import Banktree from '../../assets/bank-tree.jpeg';
 
 export default class Hero extends React.Component{
     render(){
-
         return(
             <div className="hero">
                 <section className="hero-content">
