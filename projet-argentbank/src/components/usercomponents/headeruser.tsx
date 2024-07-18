@@ -1,16 +1,10 @@
-import React from "react";
+
 import {Link} from 'react-router-dom'
 import argentBankLogo from "../../assets/argentBankLogo.png";
-import { useAppSelector } from "../../services/redux/store";
-import { userLogoff } from "../../services/redux/reducers";
-import {useDispatch} from 'react-redux';
+
 
 export default function Headeruser()  {
-  const dispatch = useDispatch();
-  const handleSignOut = (evt: React.SyntheticEvent) => {
-    dispatch(userLogoff())
-  }
-const userFirstName= useAppSelector(state=> state.profile.firstName)
+
     return (
         <nav className="main-nav">
         <a className="main-nav-logo" href="/">

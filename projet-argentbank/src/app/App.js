@@ -1,7 +1,8 @@
-import React from "react";
-import { Route, BrowserRouter, Routes } from "react-router-dom";
-import { Provider } from "react-redux";
-import { store } from "../services/redux/store";
+import {useEffect} from "react";
+import { connect } from "react-redux";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { fetchedUser } from "../services/redux/fetch/fetcheduser";
 import Index from "../pages/indexpage";
 import Footer from "../components/footer";
 import Footerstyle from "../styles/footerstyle";
@@ -17,21 +18,42 @@ import Error404 from "../components/error";
  * @param {id} id of the user
  */
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <BrowserRouter>
-          <Routes>
-            <Route exact path="/" element={<Index />} />
-            <Route path="/signin" element={<Signinpage />} />
-            <Route path="/user" element={<Userpage />} />
-            <Route path="/*" element={<Error404 />} />
-          </Routes>
-          <Footer />
-          <Footerstyle />
-        </BrowserRouter>
-      </Provider>
-    );
+function App ({token, fetchedUser}) {
+useEffect(()=> {
+  if(localStorage.getItem("token")) {
+    const request = {
+      method: "POST",
+      endPoints: "profile",
+      token: localStorage.getItem("token")
+    };
+    fetchedUser(request);
   }
+}, [token, fetchedUser]);
+
+return (
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Index />} />
+        <Route path="/signin" element={<Signinpage />} />
+        <Route path="/user" render={(props) => <Userpage {...props} />} />
+        <Route path="/*" element={<Error404 />} />
+      </Routes>
+      <Footer />
+      <Footerstyle />
+    </BrowserRouter>
+);
 }
+
+const mapStateToProps = ({token}) => {
+  return {
+    token,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchedUser: (...args) => dispatch(fetchedUser(...args)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
+

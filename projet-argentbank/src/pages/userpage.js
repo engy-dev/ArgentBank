@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Accounts from "../components/usercomponents/accounts";
 import Headeruser from "../components/usercomponents/headeruser";
-import Titleuser from "../components/usercomponents/titleuser";
+import Titleuser from "../components/usercomponents/user";
 import Accountsstyle from "../styles/userstyles/accountsstyle";
 import Changenamestyle from "../styles/userstyles/changenamestyle";
 import Headeruserstyle from "../styles/userstyles/headeruserstyle";
