@@ -48,7 +48,6 @@ const Signin = ({ token, fetchedToken, remember }) => {
               name="email"
               ref={inputName}
               placeholder="Email"
-              value="tony@stark.com"
             />
           </div>
           <div className="input-wrapper">
@@ -59,7 +58,6 @@ const Signin = ({ token, fetchedToken, remember }) => {
               name="password"
               ref={inputPassword}
               placeholder="Password"
-              value="password123"
             />
           </div>
           <div className="input-remember">

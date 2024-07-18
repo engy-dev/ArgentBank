@@ -1,16 +1,11 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { LOGOUT } from "../services/redux/actions";
 import argentBankLogo from "../assets/argentBankLogo.png";
 
-export default class Header extends React.Component {
-  render() {
-    
-  }
-}
-
-
-/* return (
-  <nav className="main-nav">
+const Header = ({token, logout}) => {
+  return(
+    <nav className="main-nav">
     <Link className="main-nav-logo" to="/">
       <img
         className="main-nav-logo-image"
@@ -20,10 +15,47 @@ export default class Header extends React.Component {
       <h1 className="sr-only">Argent Bank</h1>
     </Link>
     <div>
-      <Link className="main-nav-item" to="/signin">
+      <Link className="main-nav-item" to="/login">
         <i className="fa fa-user-circle"></i>
         Sign In
       </Link>
     </div>
+    <div>
+    {token ? (
+      <>
+          <Link className="main-nav-item" to="/user">
+            <i className="fa fa-user-circle"></i>
+            User
+          </Link>
+          <Link className="main-nav-item" to="/" onClick={()=>logout()}>
+            <i className="fa fa-sign-out"></i>
+            Log Out
+          </Link>
+          </>
+          ):(
+            <Link to="./login" className="main-nav-item">
+            <i className="fa fa-user-circle"></i>
+            Sign In
+          </Link>
+
+        )
+        };
+        </div>
   </nav>
-); */
+  )
+}
+
+
+const mapStateToProps = ({token}) => {
+  return{
+    token
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    logout: () => dispatch({type: LOGOUT})
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
