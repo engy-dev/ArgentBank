@@ -25,6 +25,7 @@ const Changenamestyle = createGlobalStyle`
 .input-wrapper{
     width: 40%;
     margin: 3%;
+    height: 4vh;
 }
 
 label, input{
@@ -39,6 +40,7 @@ label, input{
     border: solid 1px #5256ec;
     border-radius: 3px;
     width: 25%;
+    height: 3.5vh;
 }
 
 .headerchangename>h1{
@@ -47,6 +49,22 @@ label, input{
 
 .hidden{
   display:none;
+}
+
+@media (max-width: 919px) {
+    .changenameform{
+        width: 100%;
+    }
+
+    .input-wrapper{
+        width: 44%;
+        height: 3.5vh;
+    }
+
+    .savebutton, .cancelbutton{
+        width: 30%;
+        height: 4vh;
+    }
 }
 `
 

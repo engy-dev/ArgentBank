@@ -7,8 +7,17 @@ const Accountsstyle = createGlobalStyle`
   padding-bottom: 0.1%;
 }
 
-@media (min-width: 920px) {
-  
+    .transaction-button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+  }
 
   .account {
     display: flex;
@@ -24,6 +33,11 @@ const Accountsstyle = createGlobalStyle`
     text-align: left;
     margin-bottom: 2rem;
   }
+
+@media (min-width: 920px) {
+  
+
+  
   
   .account-amount {
     margin: 0;
@@ -48,18 +62,19 @@ const Accountsstyle = createGlobalStyle`
   }
 
   .transaction-button {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    border-color: #00bc77;
-    background-color: #00bc77;
-    color: #fff;
-  }
+      width: 200px;
+    }
+
+    .account {
+      flex-direction: row;
+    }
   
-  @media (min-width: 720px) {
+    .account-content-wrapper.cta {
+      flex: 0;
+    }
+}
+  
+  @media (max-width: 919px) {
     .account {
       flex-direction: row;
     }
@@ -71,7 +86,11 @@ const Accountsstyle = createGlobalStyle`
     .transaction-button {
       width: 200px;
     }
+
+
   }
+
+  
   
 `
 
