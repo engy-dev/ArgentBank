@@ -19,6 +19,8 @@ export const fetchedUser = (request) => {
       .then((user) => {
         if (request.token) {
           user.token = request.token;
+          user.firstName = request.firstName;
+          user.lastName = request.lastName;
         }
 
         dispatch(login(user));

@@ -33,7 +33,7 @@ const Header = ({token, logout}) => {
           </Link>
 
         )
-        };
+        }
         </div>
   </nav>
   )

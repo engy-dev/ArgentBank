@@ -38,7 +38,7 @@ return (
       <Routes>
         <Route exact path="/" element={<Index />} />
         <Route path="/login" element={<Signinpage />} />
-        <Route path="/user" render={(props) => <Userpage {...props} />} />
+        <Route path="/user/*" element={<Userpage animate={true}/>}/>
         <Route path="/*" element={<Error404 />} />
       </Routes>
       <Footer />
@@ -59,4 +59,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
+
+
 

@@ -1,10 +1,12 @@
 import { useRef } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import {fetchedEditName} from "../../services/redux/fetch/fetcheditname";
 
 const EditUserName = ({user, token, fetchedEditName, isToggle, change})=> {
     const inputFirstnameChange = useRef();
     const inputLastNameChange = useRef();
+    const firstName = useSelector((state)=> state.firstName);
+    const lastName = useSelector((state)=> state.lastName);
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
@@ -22,15 +24,15 @@ const EditUserName = ({user, token, fetchedEditName, isToggle, change})=> {
 
     return(
 
-      <form className="changenameform" onSubmit={handleSubmit}>
+      <form className="changenameform" onSubmit={handleSubmit} style={{display: isToggle ? "flex":"none"}}>
         <div className="input-wrapper">
           <label for="Firstname">
-            <input className="inputchangename" type="text" id="Firstname" placeholder={user.firstName} ref={inputFirstnameChange} />
+            <input className="inputchangename" type="text" id="Firstname" placeholder={firstName} ref={inputFirstnameChange} />
           </label>
         </div>
         <div className="input-wrapper">
           <label for="Lastname">
-            <input className="inputchangename" type="text" id="Lastname" placeholder={user.lastName} ref={inputLastNameChange}/>
+            <input className="inputchangename" type="text" id="Lastname" placeholder={lastName} ref={inputLastNameChange}/>
           </label>
         </div>
         <button className="savebutton" type="submit">Save</button>

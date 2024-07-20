@@ -2,19 +2,26 @@ import {createGlobalStyle} from "styled-components";
 
 const Userstyle = createGlobalStyle`
 
-@media (min-width: 920px) {
-    .edit-button {
-  border-color: #00bc77;
+.header {
+  color: #fff;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.edit-button {
+      border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
   font-weight: bold;
   padding: 10px;
-}
+text-decoration: none;
+font-size: 13px;
+padding: 12px 8px 12px 8px;
 
-.header {
-  color: #fff;
-  margin-bottom: 2rem;
-}
 }
 
 .main-nav {

@@ -1,25 +1,29 @@
-import { Route, Routes, Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { Navigate } from "react-router";
+import {Link } from "react-router-dom";
+import { connect, useSelector } from "react-redux";
+import { Navigate} from "react-router";
 import { useEffect, useState } from "react";
 import { fetchedUser } from "../../services/redux/fetch/fetcheduser";
 import EditUserName from "./edituser";
+import Changenamestyle from "../../styles/userstyles/changenamestyle";
 
-const User = ({ match, token, user, fetchedUser }) => {
+const User = ({token, fetchedUser }) => {
   const [isToggleBtn, setIsToggleBtn] = useState(true);
   const [isToggle, setIsToggle] = useState(false);
+  const firstName = useSelector((state)=>state.firstName);
+
+  
 
   useEffect(() => {
     if (token) {
       const request = {
         method: "POST",
         endPoints: "profile",
-        token: token,
+        token: token
       };
 
       fetchedUser(request);
     }
-  },[token, fetchedUser]);
+  }, [token, fetchedUser]);
 
   
       const change = () => {
@@ -36,14 +40,13 @@ const User = ({ match, token, user, fetchedUser }) => {
         <div className="header">
           <h1>Welcome back</h1>
           <div style={{display: isToggleBtn ? "flex": "none"}}>
-            <h2>{user.firstName}{user.lastName}</h2>
+            <h2>{firstName}</h2>
           </div>
-         <Link to={`${match.url}/edit`} onClick={()=> change()}>Edit Name </Link>
+         <Link to={`user/edit`} onClick={()=> change()}  className="edit-button" style={{display: isToggleBtn ? "flex": "none"}}>Edit Name </Link>
         </div>
 
-        <Routes>
-          <Route path={`${match.url}/edit`} render={(props)=>(<EditUserName {...props} token={token} change={change} isToggle={isToggle}/>)}/>
-        </Routes>
+<EditUserName token={token} change={change} isToggle={isToggle}/><Changenamestyle/>
+
         </>
       );
 };

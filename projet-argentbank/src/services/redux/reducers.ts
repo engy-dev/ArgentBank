@@ -12,13 +12,14 @@ const userReducer = (state= initialState, action: any) => {
     return {
       ...state,
       token: action.token.body.token,
-      remember: action.token.body.remermber
+      remember: action.token.body.remember
     }
     }
     case LOGIN:{
       return {
         ...state,
-        token: action.token
+        token: action.token,
+        firstName: action.firstName
       }
     }
     case LOGOUT:{
