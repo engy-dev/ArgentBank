@@ -1,5 +1,6 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
+/* App component's CSS*/
 const AppStyle = createGlobalStyle`
 html {
   font-family: Avenir, Helvetica, Arial, sans-serif;

@@ -1,6 +1,6 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
-
+/* Hero component's CSS*/
 const Herostyle = createGlobalStyle`
 .hero{
   height: 300px;

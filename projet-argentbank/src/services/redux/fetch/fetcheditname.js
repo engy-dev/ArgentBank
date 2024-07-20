@@ -1,5 +1,7 @@
 import { editName } from "../actions";
 
+
+/*Fetch component, for edit names, called in Editusername component*/
 export const fetchedEditName = (request) => {
   return async (dispatch) => {
     return fetch(`http://localhost:3001/api/v1/user/${request.endPoints}`, {

@@ -1,5 +1,7 @@
 import { login } from '../actions';
 
+
+/* Fetch component, for get names, called in User component*/
 export function fetchedUser(request) {
     return async (dispatch) => {
         return fetch(`http://localhost:3001/api/v1/user/${request.endPoints}`, {
@@ -15,10 +17,8 @@ export function fetchedUser(request) {
                 return response.json();
             })
             .then((user) => {
-                console.log(user.body.firstName);
                 request.body.firstName = user.body.firstName;
                 request.body.lastName = user.body.lastName;
-                console.log(user)
                 dispatch(login(user));
 
             })

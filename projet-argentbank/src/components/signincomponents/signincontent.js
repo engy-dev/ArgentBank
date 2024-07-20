@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { fetchedToken } from '../../services/redux/fetch/fetchedtoken';
 import { useNavigate } from 'react-router-dom';
 
-
+/*Signin component*/
 const Signin = ({ token, fetchedToken, remember }) => {
     const inputName = useRef(null);
     const inputPassword = useRef(null);
     const inputRemember = useRef(null);
     const navigate = useNavigate()
 
-
+    /*On signin submit, the token will be got by the fetch*/
     const handleSubmit = (evt) => {
         evt.preventDefault();
         const request = {
@@ -26,6 +26,7 @@ const Signin = ({ token, fetchedToken, remember }) => {
         fetchedToken(request);
     };
     if (token) {
+        /*If remember checked, store the token in local storage*/
         if (remember) {
             console.log(
                 'Stockage dans le local storage',
@@ -81,18 +82,18 @@ const Signin = ({ token, fetchedToken, remember }) => {
     );
 };
 
+/*Inject any updates to the redux store and merge them into props in componants*/
 const mapStateToProps = ({ token, remember }) => {
     return {
         token,
         remember,
     };
 };
-
+/*Inject actions to the store*/
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchedToken: (...args) => dispatch(fetchedToken(...args)),
     };
 };
-
+/*Connect provides its connected component with the pieces of the data it needs from the store */
 export default connect(mapStateToProps, mapDispatchToProps)(Signin);
-/* export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signin)); */

@@ -1,6 +1,6 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
-
+/* Feature component's CSS*/
 const Featuresstyle = createGlobalStyle`
 .features {
   display: flex;

@@ -4,13 +4,14 @@ import { fetchedUser } from '../../services/redux/fetch/fetcheduser';
 import EditUserName from './edituser';
 import Changenamestyle from '../../styles/userstyles/changenamestyle';
 
+/* User component, render name's content and upload it*/
 const User = ({ token, fetchedUser }) => {
     const [isToggleBtn, setIsToggleBtn] = useState(true);
     const [isToggle, setIsToggle] = useState(false);
     const firstName = useSelector((state) => state.firstName);
     const lastName = useSelector((state) => state.lastName)
 
-
+    /* UseEffect will fetch and recover names for each render of the component*/
     useEffect(() => {
         if (token) {
             const request = {
@@ -26,16 +27,11 @@ const User = ({ token, fetchedUser }) => {
             fetchedUser(request);
         }
     }, [fetchedUser, token, firstName, lastName]);
+    /* Toggle the user component with the edit name component*/
     const change = () => {
         setIsToggleBtn(!isToggleBtn);
         setIsToggle(!isToggle);
     };
-
-    console.log(firstName)
-
-    /*     if (!token) {
-            navigate('/')
-        } */
     return (
         <>
             <div className="header">
@@ -60,6 +56,7 @@ const User = ({ token, fetchedUser }) => {
     );
 };
 
+/*Inject any updates to the redux store and merge them into props in componants*/
 const mapStateToProps = ({ token, firstName, lastName, user }) => {
     return {
         user,
@@ -69,10 +66,12 @@ const mapStateToProps = ({ token, firstName, lastName, user }) => {
     };
 };
 
+/*Inject actions to the store*/
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchedUser: (...args) => dispatch(fetchedUser(...args)),
     };
 };
 
+/*Connect provides its connected component with the pieces of the data it needs from the store */
 export default connect(mapStateToProps, mapDispatchToProps)(User);

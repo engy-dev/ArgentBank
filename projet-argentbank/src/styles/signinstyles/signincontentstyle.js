@@ -1,7 +1,7 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
+/* Signin component's CSS*/
 const Signincontentstyle = createGlobalStyle`
-
 .bg-dark {
   padding-top: 0.1%;
   padding-bottom: 6.8%;

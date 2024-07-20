@@ -1,7 +1,8 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
+
+/* Footer component's CSS*/
 const Footerstyle = createGlobalStyle`
-
 @media (min-width: 920px) {
     .footer {
   display: flex;

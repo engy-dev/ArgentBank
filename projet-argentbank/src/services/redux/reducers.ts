@@ -6,6 +6,7 @@ import { EDIT_NAME } from "./actions";
 
 const initialState = { ...initialStateUser, ...initialStateAuthentification };
 
+/*store redux actions, and previous states, and returns new states*/
 const userReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case FETCH_TOKEN: {

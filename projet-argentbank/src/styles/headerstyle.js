@@ -1,5 +1,6 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
+/* Header component's CSS*/
 const Headerstyle = createGlobalStyle`
 .main-nav {
   display: flex;

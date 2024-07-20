@@ -4,7 +4,7 @@ import Hero from '../components/indexcomponents/hero';
 import Featuresstyle from '../styles/indexstyles/featuresstyles';
 import Herostyle from '../styles/indexstyles/herostyle';
 
-
+/*Index page which contains index components*/
 export default function Index() {
 
     return (

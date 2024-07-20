@@ -1,5 +1,7 @@
 import { fetchToken } from "../actions";
 
+
+/* fetch component, for get the token, called in Signin component*/
 export const fetchedToken = (request) => {
   return async (dispatch) => {
     return fetch(`http://localhost:3001/api/v1/user/${request.endPoints}`, {

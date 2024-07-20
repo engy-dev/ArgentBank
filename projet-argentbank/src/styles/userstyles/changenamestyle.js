@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
+/* EditUsername component's CSS*/
 const Changenamestyle = createGlobalStyle`
-
 .changenameform{
     display: flex;
     flex-direction: column;
@@ -70,13 +70,31 @@ label, input{
 
     .input-wrapper{
         width: 30%;
-        height: 3.5vh;
+        height: 2vh;
     }
 
-    .savebutton, .cancelbutton{
-        width: 10%;
-        height: 4vh;
+    label, input{
+        height: 100%;
+        width: 60%;
     }
+
+    .savebutton{
+    width: 100%;
+    margin-top: 2%;
+}
+
+.cancelbutton{
+    width: 75px;
+    margin: 0 auto;
+    margin-top: 3%;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+ flex-wrap: nowrap;
+ align-items: center;
+}
 }
 `
 

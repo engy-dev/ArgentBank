@@ -1,5 +1,6 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
+/* 404 component's CSS*/
 const Errorstyle = createGlobalStyle`
 main {
   justify-content: center;

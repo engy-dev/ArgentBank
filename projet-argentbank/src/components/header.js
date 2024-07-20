@@ -4,6 +4,8 @@ import { LOGOUT } from '../services/redux/actions';
 import argentBankLogo from '../assets/argentBankLogo.png';
 import { useSelector } from 'react-redux';
 
+
+/*Header component, If token is in to the store, header change and pin the firstName*/
 const Header = ({ token, logout }) => {
     const firstName = useSelector((state) => state.firstName);
     return (
@@ -43,6 +45,7 @@ const Header = ({ token, logout }) => {
     );
 };
 
+/*Inject any updates to the redux store and merge them into props in componants*/
 const mapStateToProps = ({ token, firstName }) => {
     return {
         token,
@@ -50,10 +53,12 @@ const mapStateToProps = ({ token, firstName }) => {
     };
 };
 
+/*Inject actions to the store*/
 const mapDispatchToProps = (dispatch) => {
     return {
         logout: () => dispatch({ type: LOGOUT }),
     };
 };
 
+/*Connect provides its connected component with the pieces of the data it needs from the store */
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

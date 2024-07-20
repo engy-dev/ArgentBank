@@ -1,7 +1,7 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
+/* Account component's CSS*/
 const Accountsstyle = createGlobalStyle`
-
 .bg-dark {
   padding-top: 0.1%;
   padding-bottom: 0.1%;

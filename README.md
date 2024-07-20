@@ -1,10 +1,8 @@
 # Project #10 - Argent Bank API
 
-This codebase contains the code needed to run the backend for Argent Bank.
+This codebase contains the code needed to run the backend and the Frontend for Argent Bank.
 
-## Getting Started
-
-### Prerequisites
+## Back-End
 
 Argent Bank uses the following tech stack:
 
@@ -41,32 +39,49 @@ npm run populate-db
 
 Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
 
-## Populated Database Data
+### Populated Database Data
 
 Once you run the `populate-db` script, you should have two users in your database:
 
-### Tony Stark
+#### Tony Stark
 
 - First Name: `Tony`
 - Last Name: `Stark`
 - Email: `tony@stark.com`
 - Password: `password123`
 
-### Steve Rogers
+#### Steve Rogers
 
 - First Name: `Steve`,
 - Last Name: `Rogers`,
 - Email: `steve@rogers.com`,
 - Password: `password456`
 
-## API Documentation
+### API Documentation
 
 To learn more about how the API works, once you have started your local environment, you can visit: http://localhost:3001/api-docs
 
-## Design Assets
+# React Website
 
-Static HTML and CSS has been created for most of the site and is located in: `/designs`.
+## Library
 
-For some of the dynamic features, like toggling user editing, there is a mock-up for it in `/designs/wireframes/edit-user-name.png`.
+```REACT
+REDUX
+REACT-ROUTER
+REACT-ROUTER-DOM
+STYLED-COMPONENTS
+```
 
-And for the API model that you will be proposing for transactitons, the wireframe can be found in `/designs/wireframes/transactions.png`.
+**Recommanded IDE**
+
+- Visual Studio Code
+
+## Front-end
+
+- Clone the repository: `https://github.com/engy-dev/ArgentBank.git`
+
+- With a terminal, move to this folder: `cd projet-argentbank`
+
+- And install dependancies: `npm install`
+
+- Start the project on port 3000: `npm start`

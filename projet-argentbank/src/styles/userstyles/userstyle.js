@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
+/* User component's CSS*/
 const Userstyle = createGlobalStyle`
-
 .header {
   color: #fff;
   margin-bottom: 2rem;

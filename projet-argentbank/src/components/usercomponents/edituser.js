@@ -2,12 +2,15 @@ import { useRef } from 'react';
 import { connect, useSelector } from 'react-redux';
 import { fetchedEditName } from '../../services/redux/fetch/fetcheditname';
 
+
+/* Edit name component*/
 const EditUserName = ({ token, fetchedEditName, isToggle, change }) => {
     const inputFirstnameChange = useRef();
     const inputLastNameChange = useRef();
     const firstName = useSelector((state) => state.firstName);
     const lastName = useSelector((state) => state.lastName);
 
+    /*On edit submit, names will be fetched and updated*/
     const handleSubmit = (evt) => {
         evt.preventDefault();
         const request = {
@@ -68,6 +71,7 @@ const EditUserName = ({ token, fetchedEditName, isToggle, change }) => {
     );
 };
 
+/*Inject any updates to the redux store and merge them into props in componants*/
 const mapStateToProps = ({ token, firstName }) => {
     return {
         token,
@@ -75,10 +79,12 @@ const mapStateToProps = ({ token, firstName }) => {
     };
 };
 
+/*Inject actions to the store*/
 const mapDispatchToprops = (dispatch) => {
     return {
         fetchedEditName: (...args) => dispatch(fetchedEditName(...args)),
     };
 };
 
+/*Connect provides its connected component with the pieces of the data it needs from the store */
 export default connect(mapStateToProps, mapDispatchToprops)(EditUserName);
