@@ -5,248 +5,253 @@ info:
   description: Transaction API for argent Back OCR project 13
   termsOfService: None
   contact:
-    name: Raphael parodi
-    url: https://inexpensive-chipmunk-220.notion.site/Rapha-l-Parodi-6d28e8e66ba0490e8da5433b474645d8
-    email: raficraft@gmail.com
+    name: Engy Hussein
+    url: www.engy/hussein.com
+    email: engy@hussein.com
 basePath: /
 paths:
-  /api/v1/user/transaction:
-     post:
-      security:
-        - Bearer: []
+  /transaction/:
+    get:
       tags:
-        - User transaction Module
-      summary: User Profile API
-      description: API for fetching a user profile
-      parameters:
-        - in: header
-          type : string
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
+      - Transaction Module
+      summary: account Dashboard
+      description: API for fetching all user account current mounth transactions
       produces:
-        - application/json
-      responses:
-        '200':
-          description: User transaction retrieved successully
-          schema:
-            $ref: '#/definitions/Transactions'
-        '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error
-          
-  /api/v1/user/transaction/details:
-     post:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        description: Attach Bearer JWT token
+        required: true
+        type: string
       security:
-        - Bearer: []
-      tags:
-        - User transaction Module
-      summary: User Profile API
-      description: API for fetching a user profile
-      parameters:
-        - in: header
-          type : string
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-        - in: body
-          name: body
-          description: Signup Payload
-          required: true
-          schema:
-            $ref: '#/definitions/BodyTransactionsDetails'
-      produces:
-        - application/json
+      - Bearer: []
       responses:
-        '200':
-          description: User transaction retrieved successully
+        "200":
+          description: Account current month transactions successfully retrieved
           schema:
-            $ref: '#/definitions/TransactionsDetails'
-        '400':
-          description: Invalid Fields
-        '500':
+            $ref: '#/definitions/inline_response_200'
+        "400":
+          description: Invalid values
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        "500":
           description: Internal Server Error
-          
-  /api/v1/user/transaction/edit/category:
-     put:
+          schema:
+            $ref: '#/definitions/ApiResponse'
+    post:
+      tags:
+      - Transaction Module
+      summary: create a transaction
+      description: API for creating user account new transaction
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        description: Attach Bearer JWT token
+        required: true
+        type: string
       security:
-        - Bearer: []
-      tags:
-        - User transaction Module
-      summary: User Profile API
-      description: API for fetching a user profile
-      parameters:
-        - in: header
-          type : string
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-        - in: body
-          name: body
-          description: Signup Payload
-          required: true
-          schema:
-            $ref: '#/definitions/BodyEditTransactionCategory'
-      produces:
-        - application/json
+      - Bearer: []
       responses:
-        '200':
-          description: User transaction retrieved successully
+        "201":
+          description: new transaction successfully created
           schema:
-            $ref: '#/definitions/EditTransactionCategory'
-        '400':
-          description: Invalid Fields
-        '500':
+            $ref: '#/definitions/ApiResponse'
+        "400":
+          description: Invalid values
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        "500":
           description: Internal Server Error
-          
-          
-  /api/v1/user/transaction/edit/notes:
-     put:
+          schema:
+            $ref: '#/definitions/ApiResponse'
+  /transaction/{transactionId}:
+    get:
+      tags:
+      - Transaction Module
+      summary: Transaction settings
+      description: API for fetching informations of a selected transaction
+      operationId: getTransactionId
+      produces:
+      - application/json
+      parameters:
+      - name: Autorization
+        in: header
+        description: Attach Bearer JWT token
+        required: true
+        type: string
+      - name: transactionId
+        in: path
+        description: Transaction identifier
+        required: true
+        type: string
+      - in: body
+        name: transaction overview
+        description: selected transaction all informations
+        required: true
+        schema:
+          $ref: '#/definitions/TransactionOverview'
       security:
-        - Bearer: []
-      tags:
-        - User transaction Module
-      summary: User Profile API
-      description: API for fetching a user profile
-      parameters:
-        - in: header
-          type : string
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-        - in: body
-          name: body
-          description: Signup Payload
-          required: true
-          schema:
-            $ref: '#/definitions/BodyEditTransactionNote'
-      produces:
-        - application/json
+      - Bearer: []
       responses:
-        '200':
-          description: User transaction retrieved successully
+        "200":
+          description: Selected transaction informations successfully retrieved
           schema:
-            $ref: '#/definitions/EditTransactionNote'
-        '400':
-          description: Invalid Fields
-        '500':
+            $ref: '#/definitions/ApiResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        "404":
+          description: Transaction not found
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        "500":
           description: Internal Server Error
-            
-securityDefinitions:
-  Bearer:
-    type: apiKey
-    name: Authorization
-    in: header 
-
+          schema:
+            $ref: '#/definitions/ApiResponse'
+    put:
+      tags:
+      - Transaction Module
+      summary: Update informations
+      description: API for updating the selected transaction editable informations
+      operationId: getTransactionId
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: Autorization
+        in: header
+        description: Attach Bearer JWT token
+        required: true
+        type: string
+      - in: body
+        name: edit
+        description: Update editable informations
+        required: true
+        schema:
+          $ref: '#/definitions/TransactionEdit'
+      security:
+      - Bearer: []
+      responses:
+        "200":
+          description: Selected transaction details successfully updated
+        "204":
+          description: No content
+        "400":
+          description: Invalid values
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ApiResponse'
 definitions:
-  Transactions:
+  Bearer:
+    type: string
+  ApiResponse:
     type: object
-    description : transaction lists for the current month
     properties:
       status:
         type: integer
       message:
         type: string
-      body:
-        type: object
-        properties:
-          id:
-            type: string
-            description : id of transaction
-          date:
-            type: string
-            description: date of transaction
-          description:
-            type: string
-            description: description of the transaction
-          amount:
-            type: string
-            description: transaction amount($)
-          balance:
-            type: string
-            description: balance ($)
-            
-  BodyTransactionsDetails :
+  TransactionOverview:
+    allOf:
+    - $ref: '#/definitions/TransactionInformations'
+    - $ref: '#/definitions/TransactionEdit'
+  TransactionInformations:
     type: object
-    description : transaction lists for the current month
-    properties :
-      id :
-        type : integer
-        description : id of transaction
-            
-  TransactionsDetails:
-    type: object
-    description : transaction lists for the current month
+    required:
+    - amount
+    - date
+    - description
+    - id
+    - type
     properties:
-      status:
-        type: integer
-      message:
+      id:
         type: string
+        example: e457r9gg-85fv-45rt-71c6-jk15371z5685
+        description: autogenerated transaction id
+      date:
+        type: string
+        format: date-time
+        example: 2008-07-14T11:43:45.001+0000
+        description: transaction date
+      description:
+        type: string
+        example: Skynet
+        description: name of the transaction
+      amount:
+        type: number
+        format: float
+        example: 448.0
+        description: transaction amount
+      type:
+        type: string
+        description: transaction type
+        enum:
+        - debit card charges
+        - online payment
+        - check
+        - cash withdrawal
+        - deposit
+        - wire transfer
+        - loan payment
+        - bank fee
+  TransactionEdit:
+    type: object
+    required:
+    - id
+    properties:
+      id:
+        type: string
+        example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        description: autogenerated transaction id
+      category:
+        type: string
+        description: transaction category
+        enum:
+        - none
+        - salary
+        - lodging
+        - assurance
+        - tax
+        - food
+        - transport
+        - saving
+        - solidarity
+      notes:
+        type: string
+        example: Fast Food
+        description: text area to write notes about the transaction
+  inline_response_200_body:
+    type: object
+    properties:
+      transaction:
+        type: array
+        description: user account current month transactions
+        items:
+          $ref: '#/definitions/TransactionInformations'
+  inline_response_200:
+    type: object
+    properties:
+      ApiResponse:
+        $ref: '#/definitions/ApiResponse'
       body:
-        type: object
-        properties:
-           id:
-            type: string
-            description : id of transaction
-          date:
-            type: string
-            description: date of transaction
-          description:
-            type: string
-            description: description of the transaction
-          amount:
-            type: string
-            description: transaction amount($)
-          balance:
-            type: string
-            description: balance ($)
-          transaction type:
-            type: string
-            description: type of transaction
-          category:
-            type: string
-            description: category of transaction
-          notes:
-            type: string
-            description: notes of transaction
-            
-  BodyEditTransactionCategory : 
-    type: object
-    description : Edit category of transaction
-    properties :
-        id :
-          type : integer
-          description : id of transaction
-        category :
-          type : string
-          description: category of transaction
-  
-  EditTransactionCategory :
-    type: object
-    description : Api response
-    properties:
-        status:
-          type: integer
-        message:
-          type: string
-          
-  BodyEditTransactionNote : 
-    type: object
-    description : Edit notes of transaction
-    properties :
-        id :
-          type : integer
-          description : id of transaction
-        category :
-          type : string
-          description: notes of transaction
-  
-  EditTransactionNote :
-    type: object
-    description : Api response
-    properties:
-        status:
-          type: integer
-        message:
-          type: string
+        $ref: '#/definitions/inline_response_200_body'

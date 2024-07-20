@@ -5,12 +5,11 @@ export const fetchedUser = (request) => {
     return fetch(`http://localhost:3001/api/v1/user/${request.endPoints}`, {
       method: request.method,
       headers: {
-        Authorization: `Bearer ${request.token}`,
+        Authorization: `Bearer ${request.token.body.token}`,
       },
     })
       .then((response) => {
         if (!response.ok) {
-          console.log("Error  - Fetch user");
           throw new Error("Error fetch user !");
         }
 

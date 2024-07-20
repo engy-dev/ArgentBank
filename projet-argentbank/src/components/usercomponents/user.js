@@ -1,10 +1,9 @@
-import {Link } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
-import { Navigate} from "react-router";
 import { useEffect, useState } from "react";
 import { fetchedUser } from "../../services/redux/fetch/fetcheduser";
 import EditUserName from "./edituser";
 import Changenamestyle from "../../styles/userstyles/changenamestyle";
+import Index from "../../pages/indexpage";
 
 const User = ({token, fetchedUser }) => {
   const [isToggleBtn, setIsToggleBtn] = useState(true);
@@ -18,12 +17,13 @@ const User = ({token, fetchedUser }) => {
       const request = {
         method: "POST",
         endPoints: "profile",
-        token: token
+        token: token,
+        fistName: firstName
       };
 
       fetchedUser(request);
     }
-  }, [token, fetchedUser]);
+  }, [token, fetchedUser, firstName]);
 
   
       const change = () => {
@@ -31,8 +31,8 @@ const User = ({token, fetchedUser }) => {
         setIsToggle(!isToggle);
       };
 
-      if (!token) {
-        return <Navigate to="/" />;
+       if (!token) {
+        return <Index/>;
       }
 
       return (
@@ -42,7 +42,7 @@ const User = ({token, fetchedUser }) => {
           <div style={{display: isToggleBtn ? "flex": "none"}}>
             <h2>{firstName}</h2>
           </div>
-         <Link to={`user/edit`} onClick={()=> change()}  className="edit-button" style={{display: isToggleBtn ? "flex": "none"}}>Edit Name </Link>
+         <button onClick={()=> change()}  className="edit-button" style={{display: isToggleBtn ? "flex": "none"}}>Edit Name </button>
         </div>
 
 <EditUserName token={token} change={change} isToggle={isToggle}/><Changenamestyle/>

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { fetchedToken } from "../../services/redux/fetch/fetchedtoken";
-import { Navigate } from "react-router";
+import Userpage from "../../pages/userpage";
 
 const Signin = ({ token, fetchedToken, remember }) => {
   const inputName = useRef(null);
@@ -32,7 +32,7 @@ const Signin = ({ token, fetchedToken, remember }) => {
       console.log("on stock dans le local storage", JSON.stringify(token));
       localStorage.setItem("token", token);
     }
-    return <Navigate to="/user" />;
+     return <Userpage/>
   }
   return (
     <main className="main bg-dark">

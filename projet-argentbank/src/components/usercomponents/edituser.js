@@ -26,17 +26,19 @@ const EditUserName = ({user, token, fetchedEditName, isToggle, change})=> {
 
       <form className="changenameform" onSubmit={handleSubmit} style={{display: isToggle ? "flex":"none"}}>
         <div className="input-wrapper">
-          <label for="Firstname">
+          <label htmlFor="Firstname">
             <input className="inputchangename" type="text" id="Firstname" placeholder={firstName} ref={inputFirstnameChange} />
           </label>
         </div>
         <div className="input-wrapper">
-          <label for="Lastname">
+          <label htmlFor="Lastname">
             <input className="inputchangename" type="text" id="Lastname" placeholder={lastName} ref={inputLastNameChange}/>
           </label>
         </div>
+        <div className="edit_buttons">
         <button className="savebutton" type="submit">Save</button>
         <button className="cancelbutton" onClick={()=> change(true, true)}>Cancel</button>
+        </div>
       </form>
     )
 }

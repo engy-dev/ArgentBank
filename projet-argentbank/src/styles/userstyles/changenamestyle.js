@@ -7,29 +7,39 @@ const Changenamestyle = createGlobalStyle`
     flex-direction: row;
     flex-wrap: wrap;
     width: 40%;
-    justify-content: space-evenly;
+    justify-content: space-around;
     margin: auto;
     padding-bottom: 3%;
 }
 
 .input-wrapper{
-    width: 50%;
+    width: 45%;
     margin-bottom: 3%;
     height: 4vh;
 }
 
 label, input{
-    width: 60%;
+    width: 90%;
     border-radius: 5px;
     height: 90%;
+    margin: 0 auto;
+}
+
+.edit_buttons{
+    display: flex;
+    flex-direction: row;
+    justiify-content: space-between;
+    width: 100%;
+    padding-right: 1%;
 }
 
 .savebutton, .cancelbutton{
     color: #5256ec;
     border: solid 1px #5256ec;
     border-radius: 3px;
-    width: 15%;
+    width: 30%;
     height: 3.5vh;
+    margin: 0 auto;
 }
 
 .headerchangename>h1{
@@ -46,12 +56,12 @@ label, input{
     }
 
     .input-wrapper{
-        width: 44%;
+        width: 30%;
         height: 3.5vh;
     }
 
     .savebutton, .cancelbutton{
-        width: 30%;
+        width: 10%;
         height: 4vh;
     }
 }
