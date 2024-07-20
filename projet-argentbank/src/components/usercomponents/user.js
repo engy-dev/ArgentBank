@@ -18,7 +18,10 @@ const User = ({ match, token, user, fetchedUser }) => {
       };
 
       fetchedUser(request);
+    }
+  },[token, fetchedUser]);
 
+  
       const change = () => {
         setIsToggleBtn(!isToggleBtn);
         setIsToggle(!isToggle);
@@ -43,8 +46,6 @@ const User = ({ match, token, user, fetchedUser }) => {
         </Routes>
         </>
       );
-    }
-  });
 };
 
 const mapStateToProps = ({token, user}) => {
