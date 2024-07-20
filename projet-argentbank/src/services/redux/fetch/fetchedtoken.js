@@ -5,7 +5,7 @@ export const fetchedToken = (request) => {
     return fetch(`http://localhost:3001/api/v1/user/${request.endPoints}`, {
       method: request.method,
       headers: {
-        Accpect: "application/json",
+        Accept: "application/json",
         "Content-type": "application/json",
       },
       body: JSON.stringify(request.body),
