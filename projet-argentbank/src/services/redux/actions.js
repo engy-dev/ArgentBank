@@ -3,20 +3,21 @@ export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const EDIT_NAME = 'EDIT_NAME';
 
-export const fetchToken = (token) => {
+export const login = (user) => {
     return {
         type: LOGIN,
-        token,
-        remember: token.body.remember,
+        firstName: user.body.firstName,
+        lastName: user.body.lastName,
+        email: user.body.email,
 
     };
 };
 
-export const login = (user) => {
+export const fetchToken = (token) => {
     return {
-        type: LOGIN,
-        user: user.body,
-        token: user.token,
+        type: FETCH_TOKEN,
+        token: token.body.token,
+        remember: token.body.remember,
     };
 };
 
@@ -31,6 +32,7 @@ export const logout = () => {
 export const editName = (user) => {
     return {
         type: EDIT_NAME,
-        user: user.body,
+        firstName: user.body.firstName,
+        lastName: user.body.lastName,
     };
 };

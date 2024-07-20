@@ -1,16 +1,15 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { connect } from 'react-redux';
 import { fetchedToken } from '../../services/redux/fetch/fetchedtoken';
-import Userpage from '../../pages/userpage';
+import { useNavigate } from 'react-router-dom';
+
 
 const Signin = ({ token, fetchedToken, remember }) => {
     const inputName = useRef(null);
     const inputPassword = useRef(null);
     const inputRemember = useRef(null);
+    const navigate = useNavigate()
 
-    useEffect(() => {
-        document.title = 'login';
-    }, []);
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
@@ -34,14 +33,7 @@ const Signin = ({ token, fetchedToken, remember }) => {
             );
             localStorage.setItem('token', token);
         }
-
-        /*affiche la page user, mais toujours le problème des names et URI est toujours "/login", et pas "/user"*/
-        return <Userpage />;
-
-        /*affiche la page user, URI est "/user" mais les composants de la page userpage ne s'affiche pas 
-        (Matched leaf route at location "/user" does not have an element. 
-        This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.) */
-        /*         window.location.href = 'http://localhost:3000/user'; */
+        navigate('/user')
     }
     return (
         <main className="main bg-dark">
@@ -82,6 +74,7 @@ const Signin = ({ token, fetchedToken, remember }) => {
                         className="sign-in-button"
                         value="Sign In"
                     />
+
                 </form>
             </section>
         </main>
@@ -102,3 +95,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signin);
+/* export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signin)); */

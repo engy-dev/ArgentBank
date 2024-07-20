@@ -3,14 +3,13 @@ import { useEffect, useState } from 'react';
 import { fetchedUser } from '../../services/redux/fetch/fetcheduser';
 import EditUserName from './edituser';
 import Changenamestyle from '../../styles/userstyles/changenamestyle';
-import Index from '../../pages/indexpage';
 
 const User = ({ token, fetchedUser }) => {
     const [isToggleBtn, setIsToggleBtn] = useState(true);
     const [isToggle, setIsToggle] = useState(false);
-    const user = useSelector((state) => state.user)
+    const firstName = useSelector((state) => state.firstName);
+    const lastName = useSelector((state) => state.lastName)
 
-    console.log(user)
 
     useEffect(() => {
         if (token) {
@@ -18,28 +17,32 @@ const User = ({ token, fetchedUser }) => {
                 method: 'POST',
                 endPoints: 'profile',
                 token: token,
+                body: {
+                    firstName,
+                    lastName
+                }
             };
 
             fetchedUser(request);
         }
-    }, [token, fetchedUser]);
+    }, [fetchedUser, token, firstName, lastName]);
     const change = () => {
         setIsToggleBtn(!isToggleBtn);
         setIsToggle(!isToggle);
     };
 
-    if (!token) {
-        return <Index />;
-    }
+    console.log(firstName)
 
+    /*     if (!token) {
+            navigate('/')
+        } */
     return (
         <>
             <div className="header">
                 <h1>Welcome back</h1>
                 <div style={{ display: isToggleBtn ? 'flex' : 'none' }}>
                     <h2>
-                        {user.firstName}&nbsp;
-                        {user.lastName}
+                        {firstName}&nbsp;{lastName}
                     </h2>
                 </div>
                 <button
@@ -57,8 +60,9 @@ const User = ({ token, fetchedUser }) => {
     );
 };
 
-const mapStateToProps = ({ token, firstName, lastName }) => {
+const mapStateToProps = ({ token, firstName, lastName, user }) => {
     return {
+        user,
         token,
         firstName,
         lastName,

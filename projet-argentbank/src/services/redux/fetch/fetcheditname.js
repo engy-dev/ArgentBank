@@ -5,7 +5,7 @@ export const fetchedEditName = (request) => {
     return fetch(`http://localhost:3001/api/v1/user/${request.endPoints}`, {
       method: request.method,
       headers: {
-        Authorization: `Bearer ${request.token.body.token}`,
+        Authorization: `Bearer ${request.token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(request.body),

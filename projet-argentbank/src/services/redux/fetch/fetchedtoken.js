@@ -23,6 +23,8 @@ export const fetchedToken = (request) => {
       })
       .catch((error) => {
         console.log(error);
+        alert('E-mail ou mot de passe incorrect')
       });
+
   };
 };

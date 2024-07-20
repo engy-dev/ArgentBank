@@ -1,15 +1,22 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 const Changenamestyle = createGlobalStyle`
 
 .changenameform{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     width: 40%;
-    justify-content: space-around;
-    margin: auto;
+    justify-content: center;
+    margin: 0 auto;
     padding-bottom: 3%;
+}
+
+.form{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .input-wrapper{
@@ -25,25 +32,31 @@ label, input{
     margin: 0 auto;
 }
 
+
 .edit_buttons{
     display: flex;
     flex-direction: row;
     justiify-content: space-between;
-    width: 100%;
-    padding-right: 1%;
+    width: 75px;
+
 }
 
 .savebutton, .cancelbutton{
     color: #5256ec;
     border: solid 1px #5256ec;
     border-radius: 3px;
-    width: 30%;
     height: 3.5vh;
-    margin: 0 auto;
 }
 
-.headerchangename>h1{
-    color: white;
+.savebutton{
+    width: 100%;
+    margin-top: 2%;
+}
+
+.cancelbutton{
+    width: 75px;
+    margin: 0 auto;
+    margin-top: 2%;
 }
 
 .hidden{

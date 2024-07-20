@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { connect, useSelector } from 'react-redux';
 import { fetchedEditName } from '../../services/redux/fetch/fetcheditname';
 
-const EditUserName = ({ user, token, fetchedEditName, isToggle, change }) => {
+const EditUserName = ({ token, fetchedEditName, isToggle, change }) => {
     const inputFirstnameChange = useRef();
     const inputLastNameChange = useRef();
     const firstName = useSelector((state) => state.firstName);
@@ -23,45 +23,48 @@ const EditUserName = ({ user, token, fetchedEditName, isToggle, change }) => {
     };
 
     return (
-        <form
-            className="changenameform"
-            onSubmit={handleSubmit}
-            style={{ display: isToggle ? 'flex' : 'none' }}
-        >
-            <div className="input-wrapper">
-                <label htmlFor="Firstname">
-                    <input
-                        className="inputchangename"
-                        type="text"
-                        id="Firstname"
-                        placeholder={firstName}
-                        ref={inputFirstnameChange}
-                    />
-                </label>
-            </div>
-            <div className="input-wrapper">
-                <label htmlFor="Lastname">
-                    <input
-                        className="inputchangename"
-                        type="text"
-                        id="Lastname"
-                        placeholder={lastName}
-                        ref={inputLastNameChange}
-                    />
-                </label>
-            </div>
-            <div className="edit_buttons">
-                <button className="savebutton" type="submit" onClick={change}>
-                    Save
-                </button>
-                <button
-                    className="cancelbutton"
-                    onClick={change}
-                >
-                    Cancel
-                </button>
-            </div>
-        </form>
+        <div style={{ display: isToggle ? 'flex' : 'none' }} className="changenameform">
+            <form
+                onSubmit={handleSubmit}
+                className="form"
+            >
+                <div className="input-wrapper">
+                    <label htmlFor="Firstname">
+                        <input
+                            className="inputchangename"
+                            type="text"
+                            id="Firstname"
+                            placeholder={firstName}
+                            ref={inputFirstnameChange}
+                        />
+                    </label>
+                </div>
+                <div className="input-wrapper">
+                    <label htmlFor="Lastname">
+                        <input
+                            className="inputchangename"
+                            type="text"
+                            id="Lastname"
+                            placeholder={lastName}
+                            ref={inputLastNameChange}
+                        />
+                    </label>
+                </div>
+                <div className="edit_buttons">
+                    <button className="savebutton" type="submit" onClick={change}>
+                        Save
+                    </button>
+
+                </div>
+            </form>
+            <button
+                className="cancelbutton"
+                type="cancel"
+                onClick={change}
+            >
+                Cancel
+            </button>
+        </div>
     );
 };
 

@@ -1,4 +1,4 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 const Userstyle = createGlobalStyle`
 
@@ -9,7 +9,12 @@ const Userstyle = createGlobalStyle`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
+.header>h1{
+  margin: 0 auto;
+  padding-top: 1%;
+  padding-right: 2.5%;
 }
 
 .edit-button {

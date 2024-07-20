@@ -5,15 +5,14 @@ import Featuresstyle from '../styles/indexstyles/featuresstyles';
 import Herostyle from '../styles/indexstyles/herostyle';
 
 
-export default class Index extends React.Component{
-    render(){
-        return(
-            <Fragment>
-                <main>
-                    <Hero/><Herostyle/>
-                    <Features/><Featuresstyle/>
-                </main>
-            </Fragment>
-        )
-    }
+export default function Index() {
+
+    return (
+        <Fragment>
+            <main>
+                <Hero /><Herostyle />
+                <Features /><Featuresstyle />
+            </main>
+        </Fragment>
+    )
 }

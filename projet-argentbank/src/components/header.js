@@ -5,7 +5,7 @@ import argentBankLogo from '../assets/argentBankLogo.png';
 import { useSelector } from 'react-redux';
 
 const Header = ({ token, logout }) => {
-    const user = useSelector((state) => state.user)
+    const firstName = useSelector((state) => state.firstName);
     return (
         <nav className="main-nav">
             <Link className="main-nav-logo" to="/">
@@ -21,7 +21,7 @@ const Header = ({ token, logout }) => {
                     <>
                         <Link className="main-nav-item" to="/user">
                             <i className="fa fa-user-circle"></i>
-                            {user.firstName}
+                            {firstName}
                         </Link>
                         <Link
                             className="main-nav-item"

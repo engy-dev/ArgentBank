@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import { fetchedUser } from '../services/redux/fetch/fetcheduser';
 import Index from '../pages/indexpage';
@@ -33,18 +33,20 @@ function App({ token, fetchedUser, user }) {
     }, [token, fetchedUser, user]);
 
     return (
-        <BrowserRouter>
+        <>
             <Header />
             <Headerstyle />
             <Routes>
                 <Route exact path="/" element={<Index />} />
                 <Route path="/login" element={<Signinpage />} />
-                <Route path="/user" render={(user) => <Userpage {...user} />} />
+                {/* <Route path="/user" render={(props) => <Userpage {...props} />} /> */}
+                <Route path="/user" element={<Userpage />} />
                 <Route path="/*" element={<Error404 />} />
             </Routes>
             <Footer />
             <Footerstyle />
-        </BrowserRouter>
+        </>
+
     );
 }
 
