@@ -3,22 +3,13 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import argentBankLogo from '../assets/argentBankLogo.png';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearProfile } from '../redux/profileSlice';
-import { logout } from '../redux/authSlice';
-import { fetchProfile } from '../redux/profileSlice';
+import { clearProfile } from '../redux/reducers/profileSlice';
+import { logout } from '../redux/reducers/authSlice';
+import { fetchProfile } from '../redux/actions';
 import { AppDispatch, RootState } from '../redux/store';
-import { clearAccounts } from '../redux/accountSlice';
+import { clearAccounts } from '../redux/reducers/accountSlice';
 
-/**
- * Header component displays the navigation bar of the application.
- * It shows the logo, user profile link if logged in, and sign in/sign out links.
- *
- * @component
- * @example
- * return (
- *   <Header />
- * )
- */
+
 const Header: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { profile, isLoggedIn } = useSelector(
@@ -30,7 +21,7 @@ const Header: React.FC = () => {
     if (isLoggedIn && !profile) {
       dispatch(fetchProfile());
     }
-  }, [isLoggedIn, profile, dispatch]);
+  }, [isLoggedIn, profile]);
 
   // Handle user logout
   const handleLogout = () => {

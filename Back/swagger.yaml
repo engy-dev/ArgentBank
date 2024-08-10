@@ -67,6 +67,7 @@ paths:
       description: API for fetching a user profile
       parameters:
         - in: header
+          type: string
           name: Authorization
           description: Attach Bearer JWT token
           required: true
@@ -90,6 +91,7 @@ paths:
       description: API for updating a user profile
       parameters:
         - in: header
+          type: string
           name: Authorization
           description: Attach Bearer JWT token
           required: true
@@ -110,6 +112,128 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+  /transactions/{accountId}:
+      get:
+        tags:
+          - Transactions Module
+        summary: Transactions by accountId API
+        description: API to get transactions against a specific account.
+        parameters:
+          - in: header
+            type: string
+            name: Authorization
+            description: Attach Bearer JWT token
+            required: true
+          - in: path
+            name: accountId
+            description: Transaction Payload
+            required: true
+            schema:
+            type: string
+        produces:
+          - application/json
+        responses:
+          '200':
+            description: Transactions Fetched Successfully
+            schema:
+              $ref: '#/definitions/TransactionsByAccountId'
+          '400':
+            description: No record found
+          '500':
+            description: Internal Server Error
+  /transactions/{accountId}/{transactionId}:
+      get:
+        tags:
+          - Transactions Module
+        summary: Get Specific Transaction API
+        description: API to get a specific transaction against a specific account.
+        parameters:
+          - in: header
+            type: string
+            name: Authorization
+            description: Attach Bearer JWT token
+            required: true
+          - in: path
+            name: accountId
+            description:  Account ID
+            required: true
+            schema:
+            type: string
+          - in: path
+            name: transactionId
+            description: Transaction ID
+            required: true
+            schema:
+            type: string
+        produces:
+          - application/json
+        responses:
+          '200':
+            description: Okay
+            schema:
+              $ref: '#/definitions/SpecificTransaction'
+          '400':
+            description: No record found
+          '500':
+            description: Internal Server Error
+  /transactions/{transactionId}:
+      delete:
+        tags:
+          - Transactions Module
+        summary: Delete Specific Transaction API
+        description: API to delete a specific transaction.
+        parameters:
+          - in: header
+            type: string
+            name: Authorization
+            description: Attach Bearer JWT token
+            required: true
+          - in: path
+            name: transactionId
+            description: Transaction ID
+            required: true
+            schema:
+            type: string
+        produces:
+          - application/json
+        responses:
+          '200':
+            description: Transaction deleted
+            schema:
+              $ref: '#/definitions/DeleteTransaction'
+          '400':
+            description: No record found
+          '500':
+            description: Internal Server Error
+  /transactions/update-transaction:
+      put:
+        tags:
+          - Transactions Module
+        summary: Update Specific Transaction API
+        description: API to update a specific transaction.
+        parameters:
+          - in: header
+            type: string
+            name: Authorization
+            description: Attach Bearer JWT token
+            required: true
+          - in: body
+            name: body
+            description: Update transaction attributes
+            required: true
+            schema:
+              $ref: '#/definitions/UpdatePayloadTransaction'
+        produces:
+          - application/json
+        responses:
+          '201':
+            description: Transaction updated
+            schema:
+              $ref: '#/definitions/UpdateTransaction'
+          '400':
+            description: No record found
+          '500':
+            description: Internal Server Error
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -164,3 +288,89 @@ definitions:
         type: string
       lastName:
         type: string
+  TransactionsByAccountId:
+    type: array
+    items: 
+      properties:
+         transactionId:
+          type: string
+         accountId:
+          type: string
+         date:
+          type: string
+         description:
+          type: string
+         amount:
+          type: string
+         balance:
+          type: string
+         type:
+          type: string
+         category:
+          type: string
+         notes:
+          type: string
+         merchant:
+          type: string
+         status:
+          type: string
+         currency:
+          type: string
+         paymentMethod:
+          type: string
+  SpecificTransaction:
+    type: object
+    properties:
+      transactionId:
+       type: string
+      accountId:
+       type: string
+      date:
+       type: string
+      description:
+       type: string
+      amount:
+       type: string
+      balance:
+       type: string
+      type:
+       type: string
+      category:
+       type: string
+      notes:
+       type: string
+      merchant:
+       type: string
+      status:
+       type: string
+      currency:
+       type: string
+      paymentMethod:
+       type: string
+  DeleteTransaction:
+    type: object
+    properties:
+      message:
+        type: string
+  UpdatePayloadTransaction:
+    type: object
+    properties:
+      accountId:
+        type: string
+      transactionId:
+        type: string
+      updates:
+        type: object
+        properties: 
+          category:
+            type: string
+          notes:
+            type: string
+          description: 
+            type: string
+  UpdateTransaction:
+    type: object
+    properties:
+      message:
+        type: string
+      

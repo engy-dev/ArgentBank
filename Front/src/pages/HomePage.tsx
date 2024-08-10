@@ -5,20 +5,10 @@ import iconChat from '../assets/icon-chat.png';
 import iconMoney from '../assets/icon-money.png';
 import iconSecurity from '../assets/icon-security.png';
 
-/**
- * HomePage component displays the home page of the application.
- * It includes a hero section with promotional content and a features section.
- *
- * @component
- * @example
- * return (
- *   <HomePage />
- * )
- */
+
 const HomePage: React.FC = () => {
   return (
     <Layout>
-      {/* Hero section with background image */}
       <div
         className="relative h-[300px] bg-cover bg-[0_-50px] bg-no-repeat custom:h-[25rem] custom:bg-[0_33%]"
         style={{ backgroundImage: `url(${bankTree})` }}
@@ -39,7 +29,6 @@ const HomePage: React.FC = () => {
           </p>
         </section>
       </div>
-      {/* Features section */}
       <section className="flex flex-col custom:flex-row">
         <h2 className="sr-only">Features</h2>
         <div className="flex-1 p-10">

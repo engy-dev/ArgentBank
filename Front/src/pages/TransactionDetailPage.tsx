@@ -6,22 +6,13 @@ import {
   fetchTransactionByIdThunk,
   updateTransactionThunk,
   deleteTransactionThunk,
-} from '../redux/transactionSlice';
+} from '../redux/actions';
 import { RootState } from '../redux/store';
 import { AppDispatch } from '../redux/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-/**
- * TransactionDetailPage component displays the details of a specific transaction.
- * It allows the user to edit the transaction details and handles various states such as loading and error.
- *
- * @component
- * @example
- * return (
- *   <TransactionDetailPage />
- * )
- */
+
 const TransactionDetailPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -30,21 +21,18 @@ const TransactionDetailPage: React.FC = () => {
     (state: RootState) => state.transaction
   );
 
-  // State variables for edit mode and transaction fields
   const [isEditing, setIsEditing] = useState(false);
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [notes, setNotes] = useState('');
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
-  // Fetch transaction details if transactionId is available
   useEffect(() => {
     if (transactionId) {
       dispatch(fetchTransactionByIdThunk(transactionId));
     }
   }, [dispatch, transactionId]);
 
-  // Update state variables when transaction details are loaded
   useEffect(() => {
     if (transaction) {
       setDescription(transaction.description);
@@ -53,7 +41,6 @@ const TransactionDetailPage: React.FC = () => {
     }
   }, [transaction]);
 
-  // Handle save button click
   const handleSave = () => {
     if (transaction) {
       dispatch(
@@ -67,14 +54,12 @@ const TransactionDetailPage: React.FC = () => {
     }
   };
 
-  // Handle delete button click
   const handleDelete = () => {
     if (transaction) {
       setShowDeleteConfirm(true);
     }
   };
 
-  // Handle delete confirmation
   const handleDeleteConfirm = () => {
     if (transaction) {
       dispatch(
@@ -83,13 +68,12 @@ const TransactionDetailPage: React.FC = () => {
           transactionId: transaction.transactionId,
         })
       ).then(() => {
-        navigate(-1); // Navigate back after deletion
+        navigate(-1); 
       });
       setShowDeleteConfirm(false);
     }
   };
 
-  // Display error message if transaction fetch fails
   if (status === 'failed') {
     return (
       <div

@@ -1,45 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../redux/store';
-import { login } from '../redux/authSlice';
+import { login } from '../redux/actions';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Layout from '../Layouts/Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getItemWithExpiry } from '../utils/storage';
 
-/**
- * LoginPage component allows users to sign in to their account.
- * It handles form submission, manages state for email, password, and remember me checkbox,
- * and displays error messages if login fails.
- *
- * @component
- * @example
- * return (
- *   <LoginPage />
- * )
- */
+
 const LoginPage: React.FC = () => {
-  // State variables for email, password, and remember me checkbox
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
-  // Redux dispatch and selector hooks
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const location = useLocation();
   const { status } = useSelector((state: RootState) => state.auth);
 
-  // State variable for login error message
   const [loginError, setLoginError] = useState<string | null>(null);
 
-  // Effect to handle location state and retrieve saved login information
   useEffect(() => {
     if (location.state && location.state.error) {
       setLoginError(location.state.error);
     }
 
-    // Retrieve saved login information if it exists
     const savedEmail = getItemWithExpiry('email');
     const savedPassword = getItemWithExpiry('password');
     if (savedEmail && savedPassword) {
@@ -49,7 +34,6 @@ const LoginPage: React.FC = () => {
     }
   }, [location.state]);
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {

@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Reset CSS */
 html,
 body,
 div,
@@ -90,7 +89,6 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
 article,
 aside,
 details,
@@ -129,7 +127,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-/* add Tailwind styles after the reset */
 html {
   @apply text-center font-sans text-primary;
   -webkit-font-smoothing: antialiased;

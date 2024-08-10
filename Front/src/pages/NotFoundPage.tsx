@@ -2,16 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '../Layouts/Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-/**
- * NotFoundPage component displays a 404 error page.
- * It informs the user that the requested page was not found and provides a button to navigate back to the home page.
- *
- * @component
- * @example
- * return (
- *   <NotFoundPage />
- * )
- */
 const NotFoundPage: React.FC = () => {
   const navigate = useNavigate();
 

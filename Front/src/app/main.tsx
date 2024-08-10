@@ -5,7 +5,7 @@ import store from "../redux/store";
 import App from "./App";
 import "./index.css";
 import "../utils/fontawesome";
-import { loadTokenFromStorage } from "../redux/authSlice";
+import { loadTokenFromStorage } from "../redux/reducers/authSlice";
 
 store.dispatch(loadTokenFromStorage());
 
@@ -13,9 +13,9 @@ const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
 );
 root.render(
-	<React.StrictMode>
+	// <React.StrictMode>
 		<Provider store={store}>
 			<App />
 		</Provider>
-	</React.StrictMode>
+	// </React.StrictMode>
 );

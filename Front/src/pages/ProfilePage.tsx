@@ -2,27 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import {
-  clearProfile,
   fetchProfile,
   updateProfile,
-} from '../redux/profileSlice';
-import { fetchAccountsThunk } from '../redux/accountSlice';
+} from '../redux/actions';
+import {  clearProfile } from "../redux/reducers/profileSlice"
+import { fetchAccountsThunk } from '../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../Layouts/Layout';
 import { AppDispatch } from '../redux/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { logout } from '../redux/authSlice';
+import { logout } from '../redux/reducers/authSlice';
 
-/**
- * ProfilePage component displays the user's profile and associated accounts.
- * It allows the user to edit their profile information and handles various states such as loading, error, and session expiration.
- *
- * @component
- * @example
- * return (
- *   <ProfilePage />
- * )
- */
+
 const ProfilePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -42,21 +33,21 @@ const ProfilePage: React.FC = () => {
   const [firstName, setFirstName] = useState(profile?.firstName || '');
   const [lastName, setLastName] = useState(profile?.lastName || '');
 
-  // Fetch user profile if logged in and profile is not loaded
   useEffect(() => {
-    if (!profile) {
-      dispatch(fetchProfile());
-    }
-  }, [profile, dispatch]);
+    (() => {
+      if (!profile) {
+        dispatch(fetchProfile());
+      }
+    })()
+    return () => {}
+  }, [profile]);
 
-  // Fetch user accounts if profile is loaded
   useEffect(() => {
     if (profile && profile.id) {
       dispatch(fetchAccountsThunk(profile.id));
     }
-  }, [profile, dispatch]);
+  }, [profile]);
 
-  // Handle session expiration and unauthorized access
   useEffect(() => {
     if (profileStatus === 'failed' && profileError === 'Session expired') {
       navigate('/login', {
@@ -74,13 +65,11 @@ const ProfilePage: React.FC = () => {
     }
   }, [profileStatus, profileError, navigate, dispatch]);
 
-  // Handle save button click
   const handleSave = () => {
     dispatch(updateProfile({ firstName, lastName }));
     setEditMode(false);
   };
 
-  // Handle cancel button click
   const handleCancel = () => {
     setFirstName(profile?.firstName || '');
     setLastName(profile?.lastName || '');
